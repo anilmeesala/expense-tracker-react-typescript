@@ -1,0 +1,69 @@
+import React, {Component} from 'react';
+
+interface IExpenseFormModel {
+    modal: boolean;
+}
+
+class ExpenseForm extends Component<{}, IExpenseFormModel> {
+    constructor(props: any) {
+        super(props);
+        this.state = {
+            modal: false
+        }
+    }
+
+    toggle = () => {
+        this.setState({modal: !this.state.modal})
+    };
+
+    submitExpense(event:any){
+        event.preventDefault();
+    }
+
+    render() {
+        return (
+            <div>
+                <Button color="primary" onClick={this.toggle}>Create Expense</Button>
+                <Modal isOpen={this.state.modal} toggle={this.toggle} className="">
+                    <ModalHeader toggle={this.toggle}>Expense Form</ModalHeader>
+                    <ModalBody>
+                        <Form className="App-expenseForm" onSubmit={this.submitExpense}>
+                            <FormGroup>
+                                <Label for="expenseName">Email</Label>
+                                <Input type="text" name="expenseName" id="expenseName" placeholder="Expense Name"/>
+                            </FormGroup>
+                            <FormGroup>
+                                <Label for="expenseDesc">Description</Label>
+                                <Input type="text" name="expenseDesc" id="expenseDesc"
+                                       placeholder="Expense Description"/>
+                            </FormGroup>
+                            <FormGroup>
+                                <Label for="expenseAmount">Amount</Label>
+                                <Input type="text" name="expenseAmount" id="expenseAmount"
+                                       placeholder="Expense Amount"/>
+                            </FormGroup>
+                            <FormGroup>
+                                <Label for="expenseDate">Expense Date</Label>
+                                <Input type="text" name="expenseDate" id="expenseDate" placeholder="Expense Date"/>
+                            </FormGroup>
+
+                            <FormGroup>
+                                <Label for="category">Select</Label>
+                                <Input type="select" name="category" id="category">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </Input>
+                            </FormGroup>
+                            <Button type={"submit"}>Submit</Button>
+                        </Form>
+                    </ModalBody>
+                </Modal>
+            </div>
+        );
+    }
+}
+
+export default ExpenseForm;

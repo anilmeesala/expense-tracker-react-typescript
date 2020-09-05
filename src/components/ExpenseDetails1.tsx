@@ -2,11 +2,12 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import * as ExpenseActions from '../actions/expense-actions'
 import {bindActionCreators} from "redux";
+// import {Container} from 'react-bootstrap'
+import {Table} from 'react-bootstrap';
 import {AgGridReact} from "ag-grid-react";
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 import 'ag-grid-enterprise';
-import './expense-list.css';
 
 interface ExpenseDetailsProps {
     expenseList?:any
@@ -24,25 +25,27 @@ class ExpenseDetails extends Component<ExpenseDetailsProps,{}> {
 
 
     render() {
-
+        const colDefs = [
+            {headerName:"Select",checkboxSelection: true},
+            {headerName:"Id",field:"id",sortable: true, filter: true},
+            {headerName:"Expense Name",field:"expenseName",sortable: true, filter: true},
+            {headerName:"Description",field:"expenseDescription",sortable: true, filter: true},
+            {headerName:"Expense Category",field:"expenseCategory",sortable: true, filter: true},
+            {headerName:"Amount",field:"expenseAmount",sortable: true, filter: true},
+            {headerName:"Date",field:"expenseDate",sortable: true, filter: true}
+        ];
         return (
-            <div>
-                {
-                    this.props.expenseList.map((e:any)=> (
-                        <div className="expense-card">
-                            <span className="item-del">Delete</span>
-                            <span className="expense-item">Id: {e.id}</span>
-                            <span className="expense-item">Expense Name:{e.expenseName}</span>
-                            <span className="expense-item">Description: {e.expenseDescription}</span>
-                            <span className="expense-item">Expense Category:{e.expenseCategory}</span>
-                            <span className="expense-item">Amount: {e.expenseAmount}</span>
-                            <span className="expense-item">Date: {e.expenseDate}</span>
-                        </div>
-                    )
-                )}
+            <div
+                className="ag-theme-alpine"
+                style={{
+                    height: '250px',
+                    width: '100%' }}
+            >
+                <AgGridReact
+                    columnDefs={colDefs}
+                    rowData={this.props.expenseList}/>
             </div>
-
-               );
+        );
             {/*<div>*/}
                 {/*<div>*/}
                     {/*<Table  striped bordered hover size={"sm"} variant={"dark"}>*/}

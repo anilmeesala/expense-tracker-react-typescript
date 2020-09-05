@@ -1,0 +1,28 @@
+.expense-card{
+    /*display: flex;*/
+    /*justify-content: center;*/
+    margin: 0 auto;
+    background-color: darkgray;
+    width: 20%;
+    border: 1px solid #2d2d2d;
+    /*align-items: center;*/
+    /*display: flex;*/
+    /*justify-content: center;*/
+
+    /*align-items: center;*/
+}
+.item-del{
+    margin-left: 80%;
+    background-color: red;
+    border-radius: 25px;
+    padding: 0 5px 5px 5px;
+}
+/*.expense-card::before{*/
+    /*content:'';*/
+    /*display:inline-block;*/
+    /*margin-bottom: 85px;*/
+/*}*/
+.expense-item{
+    width: 200px;
+    display: block;
+}
